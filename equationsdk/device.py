@@ -33,7 +33,10 @@ class EquationDevice:
 
     temp: float
     temp_calc: float
+
+    # Sensors
     temp_probe: float
+    windows_open_status: bool
 
     # preset temperatures
     comfort_temp: float
@@ -93,12 +96,14 @@ class EquationDevice:
         self.temp_calc = float(data["temp_calc"])
         self.temp_probe = float(data["temp_probe"])
 
+        self.windows_open_status = bool(data["windows_open_status"])
+
         self.comfort_temp = float(data["comfort"])
         self.eco_temp = float(data["eco"])
         self.ice_temp = float(data["ice"])
 
         # User mode settings are only valid for V2 radiators.
-        if self.product_version == "v2":
+        if self.user_mode_supported():
             self.um_max_temp = float(data["um_max_temp"])
             self.um_min_temp = float(data["um_min_temp"])
             self.user_mode = bool(data["user_mode"])
