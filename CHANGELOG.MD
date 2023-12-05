@@ -1,36 +1,4 @@
 # Changelog
 
-- v1.4.1
-  -Fixes wrong package name
-- v1.4.0
-  - Added support for Oval Towel
-- v1.3.1
-  - Fixed an error on the ICE preset name.
-- v1.3.0
-  - Added support for sub-zones
-- v1.2.5.2
-  - Added experimental support for Belize / Olympia radiators
-- v1.2.5.1
-  - Fixed error in determining the latest FW available
-- v1.2.5
-  - Login now returns localID
-  - Method get_local_id no longer required.
-- v1.2.4
-  - Python update to 3.10
-  - Minor corrections
-- v1.2.2
-  - Version bump
-- v1.2.1
-  - Packaging lib update
-- v1.2.0
-  - Code refactoring
-  - Improved firmware update detection
-- v1.0.10
-  - Retrieve firmware versions by device
-- v1.0.9b1
-  - Handle erros in communication with the API.
-- v1.0.8
-  - When setting hvac mode to auto, set the temperature to Comfort.
-  - Fix authentication refresh issue.
-- v1.0.7
-  - Minor fixes.
+- v0.1.0
+  - First release.

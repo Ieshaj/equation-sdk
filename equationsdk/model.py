@@ -4,7 +4,7 @@ from __future__ import annotations
 from enum import Enum
 
 
-class RointeProduct(Enum):
+class EquationProduct(Enum):
     """Device Models and Versions enum"""
 
     def __init__(self, product_name: str, device_type: str, version: str):

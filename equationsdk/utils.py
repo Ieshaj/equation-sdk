@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import datetime as dt
 from packaging import version
-from .model import RointeProduct
+from .model import EquationProduct
 
 DEFAULT_TIME_ZONE: dt.tzinfo = dt.timezone.utc
 
@@ -35,7 +35,7 @@ def find_max_fw_version(data, device_class: str, product_version: str) -> str | 
     return None
 
 
-def build_update_map(firmware_data: dict) -> dict[RointeProduct, dict[str, str]]:
+def build_update_map(firmware_data: dict) -> dict[EquationProduct, dict[str, str]]:
     """
     Builds an update map for each device.
 
@@ -46,13 +46,13 @@ def build_update_map(firmware_data: dict) -> dict[RointeProduct, dict[str, str]]
     """
     fw_map = {}
 
-    for entry in RointeProduct:
+    for entry in EquationProduct:
         fw_map[entry] = build_product_fw_map(entry, firmware_data)
 
     return fw_map
 
 
-def build_product_fw_map(product: RointeProduct, firmware_data: dict) -> dict[str, str]:
+def build_product_fw_map(product: EquationProduct, firmware_data: dict) -> dict[str, str]:
     """Builds the upgrade map for a specific product."""
 
     if product.device_type not in firmware_data:
@@ -78,10 +78,10 @@ def build_product_fw_map(product: RointeProduct, firmware_data: dict) -> dict[st
 
 def get_product_by_type_version(
     product_type: str, product_version: str
-) -> RointeProduct | None:
+) -> EquationProduct | None:
     """Find the product model by its type and version."""
 
-    for entry in RointeProduct:
+    for entry in EquationProduct:
         if entry.device_type == product_type and entry.version == product_version:
             return entry
 

@@ -3,15 +3,15 @@
 from __future__ import annotations
 from datetime import datetime
 
-from rointesdk.utils import get_product_by_type_version
+from equationsdk.utils import get_product_by_type_version
 
-from .model import ScheduleMode, RointeProduct
+from .model import ScheduleMode, EquationProduct
 from .dto import EnergyConsumptionData
 from . import utils
 
 
-class RointeDevice:
-    """Represent a Rointe device from the API."""
+class EquationDevice:
+    """Represent a Equation device from the API."""
 
     id: str
     name: str
@@ -65,7 +65,7 @@ class RointeDevice:
         energy_data: EnergyConsumptionData,
         latest_fw: str | None,
     ) -> None:
-        """Initialize the device from the rointe's json blob."""
+        """Initialize the device from the equation's json blob."""
         self.id = device_id
         self.type = device_info["data"]["type"]
         self.product_version = str.lower(device_info["data"]["product_version"])
@@ -107,8 +107,6 @@ class RointeDevice:
 
         self.ice_mode = bool(data["ice_mode"])
         self.schedule = data["schedule"]
-        self.schedule_day = data["schedule_day"]
-        self.schedule_hour = data["schedule_hour"]
 
         self.energy_data = energy_data
 
@@ -151,6 +149,6 @@ class RointeDevice:
         return self.product_version == "v2"
 
     @property
-    def rointe_product(self) -> RointeProduct | None:
+    def equation_product(self) -> EquationProduct | None:
         """Return the product name."""
         return get_product_by_type_version(self.type, self.product_version)

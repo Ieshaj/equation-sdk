@@ -14,13 +14,13 @@ with open("README.md", encoding="utf-8") as fh:
 
 # This call to setup() does all the work
 setup(
-    name="rointe-sdk",
-    version="1.4.1",
-    author="tggm",
-    description="Python SDK for rointeconnect.com",
+    name="equation-sdk",
+    version="1.0.1",
+    author="Ieshaj",
+    description="Python SDK for equationconnect.com",
     long_description=doc_long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/tggm/rointe-sdk",
+    url="https://github.com/Ieshaj/equation-sdk",
     license="MIT",
     packages=find_packages(),
     include_package_data=True,

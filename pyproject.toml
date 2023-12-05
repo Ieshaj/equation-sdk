@@ -1,12 +1,12 @@
 [tool.poetry]
-name = "rointe-sdk"
-version = "1.4.1"
-description = "A python 3 library to interact with Rointe Devices"
+name = "equation-sdk"
+version = "1.0.1"
+description = "A python 3 library to interact with Equation Devices"
 authors = []
 license = "MIT"
 readme = "README.md"
-packages = [{include = "rointe-sdk"}]
-repository = "https://github.com/tggm/rointe-sdk"
+packages = [{include = "equation-sdk"}]
+repository = "https://github.com/Ieshaj/equation-sdk"
 
 [tool.poetry.dependencies]
 python = "^3.10"
@@ -31,11 +31,11 @@ fail_under = 0
 show_missing = true
 
 [tool.coverage.run]
-source = ["rointe-sdk"]
+source = ["equation-sdk"]
 
 
 [tool.isort]
-known_first_party = "rointe-sdk,tests"
+known_first_party = "equation-sdk,tests"
 multi_line_output = 3
 profile = "black"
 

@@ -1,4 +1,4 @@
-"""Rointe API Client"""
+"""Equation API Client"""
 from __future__ import annotations
 
 import requests
@@ -9,7 +9,7 @@ from collections import namedtuple
 from datetime import datetime, timedelta
 
 from .utils import build_update_map
-from .device import RointeDevice, ScheduleMode
+from .device import EquationDevice, ScheduleMode
 from .dto import EnergyConsumptionData
 
 from .settings import (
@@ -31,8 +31,8 @@ from .settings import (
 ApiResponse = namedtuple("ApiResponse", ["success", "data", "error_message"])
 
 
-class RointeAPI:
-    """Rointe API Communication. Handles low level calls to the API."""
+class EquationAPI:
+    """Equation API Communication. Handles low level calls to the API."""
 
     def __init__(self, username: str, password: str):
         """Initializes the API"""
@@ -264,7 +264,7 @@ class RointeAPI:
         reponse_json = response.json()
 
         if len(reponse_json) == 0 or installation_id not in reponse_json:
-            return ApiResponse(False, None, "No Rointe installation found.")
+            return ApiResponse(False, None, "No Equation installation found.")
 
         return ApiResponse(True, reponse_json[installation_id], None)
 
@@ -329,7 +329,7 @@ class RointeAPI:
         reponse_json = response.json()
 
         if len(reponse_json) == 0:
-            return ApiResponse(False, None, "No Rointe installations found.")
+            return ApiResponse(False, None, "No Equation installations found.")
 
         installations = {}
 
@@ -440,7 +440,7 @@ class RointeAPI:
 
         return ApiResponse(True, data, None)
 
-    def set_device_temp(self, device: RointeDevice, new_temp: float) -> ApiResponse:
+    def set_device_temp(self, device: EquationDevice, new_temp: float) -> ApiResponse:
         """Set the device target temperature."""
 
         if not self._ensure_valid_auth():
@@ -456,7 +456,7 @@ class RointeAPI:
 
         return self._send_patch_request(url, args, body)
 
-    def set_device_preset(self, device: RointeDevice, preset_mode: str) -> ApiResponse:
+    def set_device_preset(self, device: EquationDevice, preset_mode: str) -> ApiResponse:
         """Set the preset."""
 
         if not self._ensure_valid_auth():
@@ -495,7 +495,7 @@ class RointeAPI:
 
         return self._send_patch_request(url, args, body)
 
-    def set_device_mode(self, device: RointeDevice, hvac_mode: str) -> ApiResponse:
+    def set_device_mode(self, device: EquationDevice, hvac_mode: str) -> ApiResponse:
         """Set the HVAC mode."""
 
         if not self._ensure_valid_auth():

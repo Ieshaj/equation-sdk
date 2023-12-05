@@ -7,7 +7,7 @@ repos:
         language: system
         types: [python]
         entry: poetry run bandit
-        files: ^rointe-sdk/
+        files: ^equation-sdk/
         require_serial: true
       - id: black
         name: ☕️ Formatting code using black
@@ -131,7 +131,7 @@ repos:
         name: 🧪 Running tests and test coverage with pytest
         language: system
         types: [python]
-        entry: poetry run pytest rointe-sdk tests
+        entry: poetry run pytest equation-sdk tests
         pass_filenames: false
       - id: pyupgrade
         name: 🆙 Checking for upgradable syntax with pyupgrade
