@@ -5,7 +5,7 @@ from datetime import datetime
 
 from equationsdk.utils import get_product_by_type_version
 
-from .model import ScheduleMode, EquationProduct
+from .model import *
 from .dto import EnergyConsumptionData
 from . import utils
 
@@ -89,7 +89,6 @@ class EquationDevice:
         self.name = data["name"]
         self.nominal_power = int(data["nominal_power"])
         self.power = bool(data["power"])
-        self.preset = data["status"]
         self.mode = data["mode"]
 
         self.temp = float(data["temp"])
@@ -112,6 +111,8 @@ class EquationDevice:
 
         self.ice_mode = bool(data["ice_mode"])
         self.schedule = data["schedule"]
+
+        self.preset = self.get_current_schedule_preset() if self.mode == DEVICE_MODE_AUTO else data["status"]
 
         self.energy_data = energy_data
 
@@ -146,8 +147,18 @@ class EquationDevice:
             return ScheduleMode.COMFORT
         elif current_mode == "E":
             return ScheduleMode.ECO
-        else:
-            return ScheduleMode.NONE
+        
+        return ScheduleMode.OFF
+
+    def get_current_schedule_preset(self) -> ScheduleMode:
+        curr_mode = self.get_current_schedule_mode()
+
+        if curr_mode == ScheduleMode.COMFORT:
+            return DEVICE_PRESET_COMFORT
+        elif curr_mode == ScheduleMode.ECO:
+            return DEVICE_PRESET_ECO
+        
+        return DEVICE_PRESET_OFF
 
     def user_mode_supported(self) -> bool:
         """Return True if this device supports user mode."""

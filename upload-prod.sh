@@ -2,4 +2,4 @@
 
 echo "Uploading...."
 
-python -m twine upload dist/*1.0.3*.* -r pypi --verbose
+python -m twine upload dist/*1.0.5*.* -r pypi --verbose

@@ -13,28 +13,18 @@ class EquationProduct(Enum):
         self.device_type = device_type
         self.version = version
 
-    RADIATOR_V1 = "DeltaUltimate Radiator", "radiator", "v1"
-    RADIATOR_V2 = "D-Series Radiator", "radiator", "v2"
-    RADIATOR_B_V2 = "Belize/Olympia Radiator", "radiatorb", "v2"
-    TOWEL_RAIL_V1 = "Towel v1", "towel", "v1"
-    TOWEL_RAIL_V2 = "Towel Rail", "towel", "v2"
-    WATER_HEATER_V1 = "Water Heater v1", "acs", "v1"
-    WATER_HEATER_V2 = "Water Heater v2", "acs", "v2"
-    THERMO_V2 = "Thermostat", "therm", "v2"
-    OVAL_TOWEL = "Oval Towel", "oval_towel", "v2"
+    RADIATOR_V2 = "Equation HERA", "radiator", "v2"
 
+DEVICE_MODE_AUTO = "auto"
+DEVICE_MODE_MANUAL = "manual"
 
-
-class DeviceMode(Enum):
-    """Device working modes."""
-
-    AUTO = "auto"
-    MAN = "manual"
-
+DEVICE_PRESET_COMFORT = "comfort"
+DEVICE_PRESET_ECO = "eco"
+DEVICE_PRESET_OFF = "off"
 
 class ScheduleMode(Enum):
     """Radiator schedule modes."""
 
     COMFORT = "C"
     ECO = "E"
-    NONE = "O"
+    OFF = "O"
