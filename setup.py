@@ -15,7 +15,7 @@ with open("README.md", encoding="utf-8") as fh:
 # This call to setup() does all the work
 setup(
     name="equation-sdk",
-    version="1.0.5",
+    version="1.0.6",
     author="Ieshaj",
     description="Python SDK for equationconnect.com",
     long_description=doc_long_description,

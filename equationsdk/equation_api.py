@@ -11,6 +11,11 @@ from datetime import datetime, timedelta
 from .utils import build_update_map
 from .device import EquationDevice, ScheduleMode
 from .dto import EnergyConsumptionData
+from .model import (
+    DEVICE_PRESET_COMFORT,
+    DEVICE_PRESET_ECO,
+    DEVICE_PRESET_ICE,
+)
 
 from .settings import (
     AUTH_ACCT_INFO_URL,
@@ -470,27 +475,27 @@ class EquationAPI:
             FIREBASE_DEFAULT_URL, FIREBASE_DEVICE_DATA_PATH_BY_ID.format(device_id)
         )
 
-        if preset_mode == "comfort":
+        if preset_mode == DEVICE_PRESET_COMFORT:
             body = {
                 "power": True,
                 "mode": "manual",
                 "temp": device.comfort_temp,
-                "status": "comfort",
+                "status": DEVICE_PRESET_COMFORT,
             }
 
-        elif preset_mode == "eco":
+        elif preset_mode == DEVICE_PRESET_ECO:
             body = {
                 "power": True,
                 "mode": "manual",
                 "temp": device.eco_temp,
-                "status": "eco",
+                "status": DEVICE_PRESET_ECO,
             }
-        elif preset_mode == "ice":
+        elif preset_mode == DEVICE_PRESET_ICE:
             body = {
                 "power": True,
                 "mode": "manual",
                 "temp": device.ice_temp,
-                "status": "ice",
+                "status": DEVICE_PRESET_ICE,
             }
 
         return self._send_patch_request(url, args, body)

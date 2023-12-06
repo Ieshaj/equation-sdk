@@ -20,6 +20,7 @@ DEVICE_MODE_MANUAL = "manual"
 
 DEVICE_PRESET_COMFORT = "comfort"
 DEVICE_PRESET_ECO = "eco"
+DEVICE_PRESET_ICE = "ice"
 DEVICE_PRESET_OFF = "off"
 
 class ScheduleMode(Enum):

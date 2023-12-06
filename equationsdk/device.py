@@ -5,9 +5,19 @@ from datetime import datetime
 
 from equationsdk.utils import get_product_by_type_version
 
-from .model import *
-from .dto import EnergyConsumptionData
 from . import utils
+from .dto import EnergyConsumptionData
+from .model import (
+    ScheduleMode,
+    EquationProduct,
+
+    DEVICE_MODE_AUTO,
+
+    DEVICE_PRESET_COMFORT,
+    DEVICE_PRESET_ECO,
+    DEVICE_PRESET_ICE,
+    DEVICE_PRESET_OFF
+)
 
 
 class EquationDevice:
@@ -157,7 +167,9 @@ class EquationDevice:
             return DEVICE_PRESET_COMFORT
         elif curr_mode == ScheduleMode.ECO:
             return DEVICE_PRESET_ECO
-        
+        elif self.ice_mode:
+            return DEVICE_PRESET_ICE
+
         return DEVICE_PRESET_OFF
 
     def user_mode_supported(self) -> bool:
