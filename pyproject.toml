@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "equation-sdk"
-version = "1.0.6"
+version = "1.0.7"
 description = "A python 3 library to interact with Equation Devices"
 authors = []
 license = "MIT"

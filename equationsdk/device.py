@@ -101,7 +101,6 @@ class EquationDevice:
         self.power = bool(data["power"])
         self.mode = data["mode"]
 
-        self.temp = float(data["temp"])
         self.temp_calc = float(data["temp_calc"])
         self.temp_probe = float(data["temp_probe"])
 
@@ -123,6 +122,7 @@ class EquationDevice:
         self.schedule = data["schedule"]
 
         self.preset = self.get_current_schedule_preset() if self.mode == DEVICE_MODE_AUTO else data["status"]
+        self.temp = self.get_current_target_temp() if self.mode == DEVICE_MODE_AUTO else float(data["temp"])
 
         self.energy_data = energy_data
 
@@ -161,8 +161,11 @@ class EquationDevice:
         return ScheduleMode.OFF
 
     def get_current_schedule_preset(self) -> ScheduleMode:
+        """Return the current schedule preset for the device."""
         curr_mode = self.get_current_schedule_mode()
 
+        if not self.power:
+            return DEVICE_PRESET_OFF
         if curr_mode == ScheduleMode.COMFORT:
             return DEVICE_PRESET_COMFORT
         elif curr_mode == ScheduleMode.ECO:
@@ -171,6 +174,21 @@ class EquationDevice:
             return DEVICE_PRESET_ICE
 
         return DEVICE_PRESET_OFF
+
+    def get_current_target_temp(self) -> float:
+        """Return the current target temperature for the device."""
+        curr_mode = self.get_current_schedule_mode()
+
+        if not self.power:
+            return 0.0
+        elif curr_mode == ScheduleMode.COMFORT:
+            return self.comfort_temp
+        elif curr_mode == ScheduleMode.ECO:
+            return self.eco_temp
+        elif self.ice_mode:
+            return self.ice_temp
+
+        return 0.0
 
     def user_mode_supported(self) -> bool:
         """Return True if this device supports user mode."""
